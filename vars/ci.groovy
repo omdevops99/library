@@ -1,5 +1,7 @@
 def call() {
-    node('workstation') { 
+    node('workstation') 
+       sh'env'
+      { 
         // Stage to check out the source code from the repository
         stage('Code Checkout') {
             echo 'Checking out the source code...'
