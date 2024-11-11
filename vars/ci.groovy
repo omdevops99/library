@@ -1,6 +1,6 @@
 def call() {
     node('workstation'){ 
-       if(BRANCH_NAME == 'main'):
+       if(BRANCH_NAME == 'main')
     {
          sh'env'   
         // Stage to check out the source code from the repository
@@ -15,7 +15,7 @@ def call() {
             
         }
 
-    } else: { 
+    } else { 
 
         // Stage to run tests
         stage('Test') {
