@@ -16,7 +16,7 @@ def call() {
         }
 
     } else { 
-
+         sh'env'     
         // Stage to run tests
         stage('Test') {
             echo 'Running tests...'
