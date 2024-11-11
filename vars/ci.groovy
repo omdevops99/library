@@ -15,7 +15,7 @@ def call() {
             
         }
 
-    } else if { (BRANCH_NAME ==~ "PR.*")
+    } else if { (BRANCH_NAME ==~ 'PR.*')
 
       sh'env'   
         // Stage to check out the source code from the repository
