@@ -3,7 +3,6 @@ def call() {
         // Stage to check out the source code from the repository
         stage('Code Checkout') {
             echo 'Checking out the source code...'
-            checkout scm
         }
 
         // Stage to compile the code
