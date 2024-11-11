@@ -1,5 +1,7 @@
 def call() {
-    node('workstation') {
+    node('workstation'){ 
+       if(BRANCH_NAME == 'main'):
+    {
          sh'env'   
         // Stage to check out the source code from the repository
         stage('Code Checkout') {
@@ -12,6 +14,8 @@ def call() {
             // Example compilation command (replace with actual command for your project)
             
         }
+
+    } else: { 
 
         // Stage to run tests
         stage('Test') {
@@ -32,6 +36,7 @@ def call() {
             echo 'Releasing the build...'
             // Example release or deployment script
              // Or `scp`, `kubectl apply`, etc.
+        }
         }
     }
 }
