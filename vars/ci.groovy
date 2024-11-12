@@ -7,7 +7,7 @@ def call() {
             env.branchName = BRANCH_NAME
         }
 
-        sh'env'   
+        
         // Stage to check out the source code from the repository
         stage('Code Checkout') {
             checkout scmGit(branches: [[name: "${env.branchName}"]], 
@@ -22,7 +22,7 @@ def call() {
         }
        if(env.BRANCH_NAME == "main")
     {
-         sh'env'   
+        
         // Stage to check out the source code from the repository
         stage('test') {
             echo 'Checking out the source code...'
@@ -45,7 +45,7 @@ def call() {
 
     } else if  (env.TAG_NAME ==~ ".*") {
 
-      sh'env'   
+   
         // Stage to check out the source code from the repository
         stage('Build') {
             echo 'Releasing the build...'
@@ -59,7 +59,7 @@ def call() {
              // Or `scp`, `kubectl apply`, etc.
         } 
         } else { 
-         sh'env'     
+            
         // Stage to run tests
         stage('Test') {
             echo 'Running tests...'
