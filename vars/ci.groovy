@@ -1,43 +1,57 @@
 def call() {
     node('workstation'){ 
-       if(env.BRANCH_NAME == 'main')
+
+        sh'env'   
+        // Stage to check out the source code from the repository
+        stage('Code Checkout') {
+            echo 'Checking out the source code...'
+        }
+
+        // Stage to compile the code
+        stage('Compile') {
+            echo 'Compiling the source code...'
+            // Example compilation command (replace with actual command for your project)
+            
+        }
+       if(env.BRANCH_NAME == "main")
     {
          sh'env'   
         // Stage to check out the source code from the repository
-        stage('Code Checkout') {
+        stage('test') {
             echo 'Checking out the source code...'
         }
 
         // Stage to compile the code
-        stage('Compile') {
+        stage('build') {
             echo 'Compiling the source code...'
             // Example compilation command (replace with actual command for your project)
             
         }
 
-    } else if  (env.BRANCH_NAME ==~ /PR.*/) {
+    } else if  (env.BRANCH_NAME ==~ "PR.*") {
+        stage('Release') {
+            echo 'Releasing the build...'
+            // Example release or deployment script
+             // Or `scp`, `kubectl apply`, etc.
+        }  
+        
+
+    } else if  (env.TAG_NAME ==~ ".*") {
 
       sh'env'   
         // Stage to check out the source code from the repository
-        stage('Code Checkout') {
-            echo 'Checking out the source code...'
-        }
-
-        // Stage to compile the code
-        stage('Compile') {
-            echo 'Compiling the source code...'
-            // Example compilation command (replace with actual command for your project)
-            
+        stage('Build') {
+            echo 'Releasing the build...'
+            // Example release or deployment script
+             // Or `scp`, `kubectl apply`, etc.
         }
 
         stage('Release') {
             echo 'Releasing the build...'
             // Example release or deployment script
              // Or `scp`, `kubectl apply`, etc.
-        }
-        
-
-    } else { 
+        } 
+        } else { 
          sh'env'     
         // Stage to run tests
         stage('Test') {
