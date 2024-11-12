@@ -1,5 +1,6 @@
 def call() {
     node('workstation'){
+        sh "find . -mindepth 1 | xargs rm -rf"
         if(env.TAG_NAME == '.*'){
            env.branchName = env.TAG_NAME
         } else{
