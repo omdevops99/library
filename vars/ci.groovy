@@ -9,8 +9,11 @@ def call() {
         sh'env'   
         // Stage to check out the source code from the repository
         stage('Code Checkout') {
-            checkout scmGit(branches: [[name: "${env.branchName}"]], extensions: [], userRemoteConfigs: [[url: 'https://github.com/omdevops99/expense_jenkins.git']])
+            checkout scmGit(branches: [[name: "${env.branchName}"]], 
+            extensions: [], 
+            userRemoteConfigs: [[url: 'https://github.com/omdevops99/expense_jenkins.git']])
         }
+        sh 'ls'
 
         // Stage to compile the code
         stage('Compile') {
