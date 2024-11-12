@@ -1,10 +1,15 @@
 def call() {
-    node('workstation'){ 
+    node('workstation'){
+        if(env.TAG_NAME == '.*'){
+           env.branchName = env.TAG_NAME
+        } else{
+            env.branchName = BRANCH_NAME
+        }
 
         sh'env'   
         // Stage to check out the source code from the repository
         stage('Code Checkout') {
-            echo 'Checking out the source code...'
+            checkout scmGit(branches: [[name: "${env.branchName}"]], extensions: [], userRemoteConfigs: [[url: 'https://github.com/omdevops99/expense_jenkins.git']])
         }
 
         // Stage to compile the code
