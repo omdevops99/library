@@ -14,8 +14,6 @@ def call() {
             extensions: [], 
             userRemoteConfigs: [[url: 'https://github.com/omdevops99/expense_jenkins.git']])
         }
-        sh 'ls'
-
         // Stage to compile the code
         stage('Compile') {
             echo 'Compiling the source code...'
