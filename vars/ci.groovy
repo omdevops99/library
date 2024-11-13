@@ -43,7 +43,6 @@ def call() {
     '''
 }  
         
-        }     
         } else if(env.branch_name == "main"){
         sh 'echo main'
         // Stage to check out the source code from the repository
