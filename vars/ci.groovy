@@ -40,7 +40,7 @@ def call() {
             
         }
 
-    } else if  (env.branch_name ==~ "PR.*") {
+    } else if  (env.branch_name ==~ "PR-.*") {
         stage('Release') {
             echo 'Releasing the build...'
             // Example release or deployment script
