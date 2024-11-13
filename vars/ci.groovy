@@ -3,18 +3,18 @@ def call() {
         sh 'env'
         sh "find . -mindepth 1 | xargs rm -rf"
         if(env.TAG_NAME ==~ ".*"){
-           env.branchName = "/refs/tags/${env.TAG_NAME}"
+           env.branch_name = "/refs/tags/${env.TAG_NAME}"
         } else 
          sh 'env'
-          if(env.branchName ==~ "PR-.*"){
-            env.branchName = "${env.CHANGE_BRANCH}"
+          if(env.branch_name ==~ "PR-.*"){
+            env.branch_name = "${env.CHANGE_BRANCH}"
           }
         else{
-            env.branchName = "${BRANCH_NAME}"
+            env.branch_name = "${BRANCH_NAME}"
         }
         // Stage to check out the source code from the repository
         stage('Code Checkout') {
-            checkout scmGit(branches: [[name: "${env.branchName}"]], 
+            checkout scmGit(branches: [[name: "${env.branch_name}"]], 
             extensions: [], 
             userRemoteConfigs: [[url: 'https://github.com/omdevops99/expense_jenkins.git']])
         }
@@ -25,7 +25,7 @@ def call() {
             // Example compilation command (replace with actual command for your project)
             
         }
-       if(env.BRANCH_NAME == "main")
+       if(env.branch_name == "main")
     {
         
         // Stage to check out the source code from the repository
@@ -40,7 +40,7 @@ def call() {
             
         }
 
-    } else if  (env.BRANCH_NAME ==~ "PR.*") {
+    } else if  (env.branch_name ==~ "PR.*") {
         stage('Release') {
             echo 'Releasing the build...'
             // Example release or deployment script
@@ -49,8 +49,6 @@ def call() {
         
 
     } else if  (env.TAG_NAME ==~ ".*") {
-
-   
         // Stage to check out the source code from the repository
         stage('Build') {
             echo 'Releasing the build...'
