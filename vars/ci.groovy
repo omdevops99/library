@@ -25,9 +25,8 @@ def call() {
             // Example compilation command (replace with actual command for your project)
             
         }
-       if(env.branch_name == "main")
-    {
-        
+       if(env.branch_name == "main"){
+        sh 'echo main'
         // Stage to check out the source code from the repository
         stage('test') {
             echo 'Checking out the source code...'
@@ -40,7 +39,8 @@ def call() {
             
         }
 
-    } else if  (env.branch_name ==~ "PR-.*") {
+    } else if  (env.branch_name ==~ "PR.*") {
+        sh 'echo PR'
         stage('Release') {
             echo 'Releasing the build...'
             // Example release or deployment script
@@ -55,6 +55,7 @@ def call() {
         
 
     } else if  (env.TAG_NAME ==~ ".*") {
+        sh 'echo TAG'
         // Stage to check out the source code from the repository
         stage('Build') {
             echo 'Releasing the build...'
@@ -68,7 +69,7 @@ def call() {
              // Or `scp`, `kubectl apply`, etc.
         } 
         } else { 
-            
+        sh 'echo branch'    
         // Stage to run tests
         stage('Test') {
             echo 'Running tests...'
