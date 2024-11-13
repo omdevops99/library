@@ -14,7 +14,7 @@ def call() {
         stage('Code Checkout') {
             checkout scmGit(branches: [[name: "${env.branch_name}"]], 
             extensions: [], 
-            userRemoteConfigs: [[url: "https://github.com/omdevops99/${env.repo_name}.git"]])
+            userRemoteConfigs: [[url: "https://github.com/omdevops99/expense_jenkins.git"]])
         }
         sh  'cat Jenkinsfile'
 
@@ -50,7 +50,7 @@ def call() {
             
         }
 
-    }  else if  (env.TAG_NAME ==~ ".*") {
+    }  else if(env.TAG_NAME ==~ ".*") {
         sh 'echo TAG'
         // Stage to check out the source code from the repository
         stage('Build') {
