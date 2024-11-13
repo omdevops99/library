@@ -12,8 +12,6 @@ def call() {
             extensions: [], 
             userRemoteConfigs: [[url: 'https://github.com/omdevops99/expense_jenkins.git']])
         }
-        sh 'git clone https://github.com/omdevops99/expense_jenkins.git .'
-        sh 'git checkout ${branchName}' 
         sh  'cat jenkinsfile'
         // Stage to compile the code
         stage('Compile') {
