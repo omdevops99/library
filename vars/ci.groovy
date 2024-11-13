@@ -14,15 +14,14 @@ def call() {
         stage('Code Checkout') {
             checkout scmGit(branches: [[name: "${env.branch_name}"]], 
             extensions: [], 
-            userRemoteConfigs: [[url: "https://github.com/omdevops99/expense_jenkins.git"]])
+            userRemoteConfigs: [[url: "https://github.com/omdevops99/${repo_name}.git"]])
         }
         sh  'cat Jenkinsfile'
 
         if(app_type == "nodejs"){
         stage('Download Dependencies') {
             sh 'npm install'
-            // Example compilation command (replace with actual command for your project)
-            
+            // Example compilation command (replace with actual command for your project)  
         } 
         }
         // Stage to compile the code
