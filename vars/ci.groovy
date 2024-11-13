@@ -2,9 +2,13 @@ def call() {
     node('workstation'){
         sh 'env'
         sh "find . -mindepth 1 | xargs rm -rf"
-        if(env.TAG_NAME == /.*/){
+        if(env.TAG_NAME == ".*"){
            env.branchName = "/refs/tags/${env.TAG_NAME}"
-        } 
+        } else 
+         sh 'env'
+          if(env.branchName = "PR-.*"){
+            env.branchName = "${env.CHANGE_BRANCH}"
+          }
         else{
             env.branchName = "${BRANCH_NAME}"
         }
