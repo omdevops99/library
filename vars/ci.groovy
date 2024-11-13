@@ -20,6 +20,7 @@ def call() {
         }
         sh  'cat Jenkinsfile'
         // Stage to compile the code
+        sh 'env'
         stage('Compile') {
             echo 'Compiling the source code...'
             // Example compilation command (replace with actual command for your project)
