@@ -33,7 +33,7 @@ def call() {
              // Or `scp`, `kubectl apply`, etc.
         } 
         stage('code quality') {
-         sh 'sonar-scanner -Dsonar.host.url=http://172.31.37.111:9000 -Dsonar.token=squ_ce6e1b2d45f9ce678abf05c3720802b0f11c16cd -Dsonar.projectKey=expense_jenkins.git'
+         sh 'sonar-scanner -Dsonar.host.url=http://172.31.37.111:9000 -Dsonar.token=squ_d76c2ac190d03e20d46a4b26a8d0aba11e00cf87 -Dsonar.projectKey=expense_jenkins.git'
         }     
         } else if(env.branch_name == "main"){
         sh 'echo main'
