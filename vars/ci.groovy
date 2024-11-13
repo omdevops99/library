@@ -46,6 +46,12 @@ def call() {
             // Example release or deployment script
              // Or `scp`, `kubectl apply`, etc.
         }  
+
+        stage('integrationtest cases') {
+            echo 'intigration...'
+            // Example release or deployment script
+             // Or `scp`, `kubectl apply`, etc.
+        }     
         
 
     } else if  (env.TAG_NAME ==~ ".*") {
