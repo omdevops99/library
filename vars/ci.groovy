@@ -17,12 +17,15 @@ def call() {
             userRemoteConfigs: [[url: "https://github.com/omdevops99/${env.repo_name}.git"]])
         }
         sh  'cat Jenkinsfile'
-        // Stage to compile the code
+
+        if(app_type = "nodejs"){
         stage('Compile') {
-            echo 'Compiling the source code...'
+            sh 'npm install'
             // Example compilation command (replace with actual command for your project)
             
         } 
+        }
+        // Stage to compile the code
         if(env.JOB_BASE_NAME ==~ "PR.*"){
            sh 'echo PR'
         stage('Release') {
