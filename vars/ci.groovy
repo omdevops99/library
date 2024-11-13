@@ -41,7 +41,6 @@ def call() {
          -Dsonar.exclusions=node_modules/** \
          -Dsonar.qualitygate.wait=true' 
 
-         //wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[password: sonar_token ]]]) 
 }    
         
         }     
