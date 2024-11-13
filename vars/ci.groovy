@@ -36,7 +36,7 @@ def call() {
         stage('Code Quality') {
            sh ''' 
            sonar-scanner -Dsonar.host.url=http://172.31.37.111:9000 \
-                   -Dsonar.token=${sonar_token} \
+                   -Dsonar.token=squ_13b8a83379e299879f64feea8f7aa49c0290ddb9 \
                    -Dsonar.projectKey=${repo_name}.git \
                    -Dsonar.exclusions=node_modules/** \
                    -Dsonar.qualitygate.wait=true
