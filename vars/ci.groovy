@@ -4,7 +4,7 @@ def call() {
         if(env.TAG_NAME == '.*'){
            env.branchName = "/refs/tags/${env.TAG_NAME}"
         } else 
-          if(env.branchName = 'PR-.*'){
+          if(env.branchName = 'PR.*'){
             env.branchName = "${env.CHANGE_BRANCH}"
           }
         } else{
