@@ -19,7 +19,7 @@ def call() {
         sh  'cat Jenkinsfile'
 
         if(app_type == "nodejs"){
-        stage('Compile') {
+        stage('Download Dependencies') {
             sh 'npm install'
             // Example compilation command (replace with actual command for your project)
             
@@ -33,10 +33,8 @@ def call() {
             // Example release or deployment script
              // Or `scp`, `kubectl apply`, etc.
         } 
-        stage('integrationtest cases') {
-            echo 'intigration...'
-            // Example release or deployment script
-             // Or `scp`, `kubectl apply`, etc.
+        stage('code quality') {
+         sh 'sonar-scanner -Dsonar.host.url=http://172.31.38.79:9000 -Dsonar.token=squ_ce6e1b2d45f9ce678abf05c3720802b0f11c16cd -Dsonar.projectKey=expense_jenkins.git'
         }     
         } else if(env.branch_name == "main"){
         sh 'echo main'
