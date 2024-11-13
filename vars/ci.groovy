@@ -1,11 +1,9 @@
 def call() {
     node('workstation'){
-        sh 'env'
         sh "find . -mindepth 1 | xargs rm -rf"
         if(env.TAG_NAME ==~ ".*"){
            env.branch_name = "/refs/tags/${env.TAG_NAME}"
         } else 
-         sh 'env'
           if(env.branch_name ==~ "PR-.*"){
             env.branch_name = "${env.CHANGE_BRANCH}"
           }
@@ -20,7 +18,6 @@ def call() {
         }
         sh  'cat Jenkinsfile'
         // Stage to compile the code
-        sh 'env'
         stage('Compile') {
             echo 'Compiling the source code...'
             // Example compilation command (replace with actual command for your project)
