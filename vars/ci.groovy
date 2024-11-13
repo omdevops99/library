@@ -34,8 +34,10 @@ def call() {
         } 
         stage('code quality') {
          wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[password: sonar_token ]]]) {
-         sh 'sonar-scanner -Dsonar.host.url=http://172.31.37.111:9000 -Dsonar.token=${sonar_token} 
-         -Dsonar.projectKey=expense_jenkins.git -Dsonar.exclusions=node_modules/**'   
+         sh 'sonar-scanner -Dsonar.host.url=http://172.31.37.111:9000 \
+         -Dsonar.token=${sonar_token} \
+         -Dsonar.projectKey=expense_jenkins.git \
+         -Dsonar.exclusions=node_modules/**'   
 }    
         
         }     
