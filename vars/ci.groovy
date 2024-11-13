@@ -18,7 +18,7 @@ def call() {
         }
         sh  'cat Jenkinsfile'
 
-        if(app_type = "nodejs"){
+        if(app_type == "nodejs"){
         stage('Compile') {
             sh 'npm install'
             // Example compilation command (replace with actual command for your project)
