@@ -25,8 +25,22 @@ def call() {
             echo 'Compiling the source code...'
             // Example compilation command (replace with actual command for your project)
             
-        }
-       if(env.branch_name == "main"){
+        } if (env.JOB_BASE_NAME ==~ "PR.*"){
+           sh 'echo PR'
+        stage('Release') {
+            echo 'Releasing the build...'
+            // Example release or deployment script
+             // Or `scp`, `kubectl apply`, etc.
+        } 
+
+                stage('integrationtest cases') {
+            echo 'intigration...'
+            // Example release or deployment script
+             // Or `scp`, `kubectl apply`, etc.
+        }     
+        
+        } else
+        if(env.branch_name == "main"){
         sh 'echo main'
         // Stage to check out the source code from the repository
         stage('test') {
@@ -40,22 +54,7 @@ def call() {
             
         }
 
-    } else if  (env.branch_name ==~ "PR.*") {
-        sh 'echo PR'
-        stage('Release') {
-            echo 'Releasing the build...'
-            // Example release or deployment script
-             // Or `scp`, `kubectl apply`, etc.
-        }  
-
-        stage('integrationtest cases') {
-            echo 'intigration...'
-            // Example release or deployment script
-             // Or `scp`, `kubectl apply`, etc.
-        }     
-        
-
-    } else if  (env.TAG_NAME ==~ ".*") {
+    }  else if  (env.TAG_NAME ==~ ".*") {
         sh 'echo TAG'
         // Stage to check out the source code from the repository
         stage('Build') {
