@@ -9,6 +9,7 @@ def call() {
           if(env.branchName = 'PR.*'){
             env.branchName = "${env.CHANGE_BRANCH}"
           }
+         sh 'env' 
         } else{
             env.branchName = "${BRANCH_NAME}"
         }
