@@ -2,12 +2,10 @@ def call() {
     node('workstation'){
         sh "find . -mindepth 1 | xargs rm -rf"
         if(env.TAG_NAME == '.*'){
-           env.branchName = env.TAG_NAME
+           env.branchName = "/refs/tags/${env.TAG_NAME}"
         } else{
-            env.branchName = BRANCH_NAME
+            env.branchName = "${BRANCH_NAME}"
         }
-
-        
         // Stage to check out the source code from the repository
         stage('Code Checkout') {
             checkout scmGit(branches: [[name: "${env.branchName}"]], 
