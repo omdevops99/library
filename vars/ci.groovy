@@ -4,13 +4,8 @@ def call() {
         sh "find . -mindepth 1 | xargs rm -rf"
         if(env.TAG_NAME == /.*/){
            env.branchName = "/refs/tags/${env.TAG_NAME}"
-        } else 
-         sh 'env'
-          if(env.branchName = /PR.*/){
-            env.branchName = "${env.CHANGE_BRANCH}"
-          }
-         sh 'env' 
-        } else{
+        } 
+        else{
             env.branchName = "${BRANCH_NAME}"
         }
         // Stage to check out the source code from the repository
